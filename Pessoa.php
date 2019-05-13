@@ -43,31 +43,49 @@ if (isset($_POST['acao'])&&$_POST['acao'] = 'cadastrar'){
 </head>
 <body>
     <?php if(!isset($_POST['acao'])){ ?>
+    <div style="margin-top: 200px; margin-left: 570px; width: 400px; border: solid 1px; padding: 20px; box-shadow: 1px 1px 3px brown; border-radius: 5px;">
     <form method="post">
-        <div style="margin-top: 200px; margin-left: 570px;">
-            Nome:<input class="form-group" type="text" name="nome" id="nome" placeholder="Escreva seu nome"/><br/>
-            Cpf:<input class="form-group" type="number" name="cpf" id="cpf" placeholder="Digite seu cpf" /><br/>
-            Data de Nacimento:<input class="form-group" type="date" name="nasc" id="nasc" /><br>
-            Endereço:<input class="form-group" type="text" name="endereco" id="endereco" placeholder="Insira o seu endereço" /><br>
-            <input class="form-group" type="hidden" name="acao" id="acao" value="cadastrar" />
+            Nome:<input class="form-control" type="text" name="nome" id="nome" placeholder="Escreva seu nome"/><br/>
+            Cpf:<input class="form-control" type="number" name="cpf" id="cpf" placeholder="Digite seu cpf" /><br/>
+            Data de Nacimento:<input class="form-control" type="date" name="nasc" id="nasc" /><br>
+            Endereço:<input class="form-control" type="text" name="endereco" id="endereco" placeholder="Insira o seu endereço" /><br>
+            <input type="hidden" name="acao" id="acao" value="cadastrar" />
             <br>
-            <button type="submit" class="btn btn-success">Cadastrar</button>
-        </div>
+            <button type="submit" class="btn btn-success">Cadastrar</button>   
     </form>
+    <form method="post">
+        <input type="hidden" name="acao" id="acao" value="listar" />
+        <br>
+        <button type="submit" class="btn btn-success">Listar</button>
+    </form>
+    </div>
     <?php } else if($_POST['acao'] = 'cadastrar' || $_POST['acao'] = 'listar'){ ?>
-    <div>
-        <ul>
+    <div style="width: 60%; margin: 100px auto;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cpf</th>
+                    <th scope="col">Data de Nascimento</th>
+                    <th scope="col">Endereço</th>
+                </tr>
+            </thead>
+            <tbody>
         <?php
         $pessoas = $_SESSION['pessoas'];
         foreach ($pessoas as $p){
-            echo '<li>'.'Nome: '.$p->getNome().'</li>';
-            echo '<li>'.'Cpf: '.$p->getCpf().'</li>';
-            echo '<li>'.'Data de Nascimento: '.$p->getNasc().'</li>';
-            echo '<li>'.'Endereço: '.$p->getEndereco().'</li>';
+            echo '<tr>';
+            echo '<td>'.$p->getNome().'</td>';
+            echo '<td>'.$p->getCpf().'</td>';
+            echo '<td>'.$p->getNasc().'</td>';
+            echo '<td>'.$p->getEndereco().'</td>';
+            echo '</tr>';
         } ?>
-        </ul>
+            </tbody>
+        </table>
+        <a class="btn btn-success"role="button" href="Pessoa.php">Voltar</a>
     </div>
-    <a class="btn btn-success"role="button" href="http://localhost/iniciando_poo_php/Pessoa.php">Voltar</a>
+    
     <?php } ?>
 </body>
 </html>
