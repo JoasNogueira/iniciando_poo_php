@@ -38,34 +38,36 @@ if (isset($_POST['acao'])&&$_POST['acao'] = 'cadastrar'){
 <html>
 <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <title>Pessoa</title>
 </head>
 <body>
     <?php if(!isset($_POST['acao'])){ ?>
     <form method="post">
-        <div>
-            Nome:<input type="text" name="nome" id="nome" placeholder="Escreva seu nome"/><br/>
-            Cpf:<input type="number" name="cpf" id="cpf" placeholder="Digite seu cpf" /><br/>
-            Data de Nacimento:<input type="date" name="nasc" id="nasc" /><br>
-            Endereço:<input type="text" name="endereco" id="endereco" placeholder="Insira o seu endereço" /><br>
-            <input type="hidden" name="acao" id="acao" value="cadastrar" />
+        <div style="margin-top: 200px; margin-left: 570px;">
+            Nome:<input class="form-group" type="text" name="nome" id="nome" placeholder="Escreva seu nome"/><br/>
+            Cpf:<input class="form-group" type="number" name="cpf" id="cpf" placeholder="Digite seu cpf" /><br/>
+            Data de Nacimento:<input class="form-group" type="date" name="nasc" id="nasc" /><br>
+            Endereço:<input class="form-group" type="text" name="endereco" id="endereco" placeholder="Insira o seu endereço" /><br>
+            <input class="form-group" type="hidden" name="acao" id="acao" value="cadastrar" />
             <br>
-            <button type="submit">Cadastrar</button>
+            <button type="submit" class="btn btn-success">Cadastrar</button>
         </div>
     </form>
     <?php } else if($_POST['acao'] = 'cadastrar' || $_POST['acao'] = 'listar'){ ?>
     <div>
-        <ul>
+        <tr>
         <?php
         $pessoas = $_SESSION['pessoas'];
         foreach ($pessoas as $p){
-            echo '<li>'.$p->getNome().'<br>';
+            echo '<td>'.$p->getNome().'<br>';
             echo $p->getCpf().'<br>';
             echo $p->getNasc().'<br>';
-            echo $p->getEndereco().'</li>';
+            echo $p->getEndereco().'</td>';
         } ?>
-        </ul>
+        </tr>
     </div>
+    <a class="btn btn-success"role="button" href="http://localhost/iniciando_poo_php/Pessoa.php">Voltar</a>
     <?php } ?>
 </body>
 </html>
