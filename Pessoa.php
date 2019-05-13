@@ -56,16 +56,16 @@ if (isset($_POST['acao'])&&$_POST['acao'] = 'cadastrar'){
     </form>
     <?php } else if($_POST['acao'] = 'cadastrar' || $_POST['acao'] = 'listar'){ ?>
     <div>
-        <tr>
+        <ul>
         <?php
         $pessoas = $_SESSION['pessoas'];
         foreach ($pessoas as $p){
-            echo '<td>'.$p->getNome().'<br>';
-            echo $p->getCpf().'<br>';
-            echo $p->getNasc().'<br>';
-            echo $p->getEndereco().'</td>';
+            echo '<li>'.'Nome: '.$p->getNome().'</li>';
+            echo '<li>'.'Cpf: '.$p->getCpf().'</li>';
+            echo '<li>'.'Data de Nascimento: '.$p->getNasc().'</li>';
+            echo '<li>'.'Endereço: '.$p->getEndereco().'</li>';
         } ?>
-        </tr>
+        </ul>
     </div>
     <a class="btn btn-success"role="button" href="http://localhost/iniciando_poo_php/Pessoa.php">Voltar</a>
     <?php } ?>
