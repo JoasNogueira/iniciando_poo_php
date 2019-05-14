@@ -30,8 +30,9 @@ session_start();
             $_SESSION['pessoas'] = $pessoas;
         }
     }
-if (isset($_POST['acao'])&&$_POST['acao'] = 'cadastrar'){
+if (isset($_GET['acao'])&&$_GET['acao'] == 'cadastrar'){
     cadastrarPessoa();
+    header('Location: pessoa.php?acao=listar');
 }
 ?>
 <!DOCTYPE html>
@@ -42,24 +43,19 @@ if (isset($_POST['acao'])&&$_POST['acao'] = 'cadastrar'){
     <title>Pessoa</title>
 </head>
 <body>
-    <?php if(!isset($_POST['acao'])){ ?>
+    <?php if(!isset($_GET['acao'])){ ?>
     <div style="margin-top: 200px; margin-left: 570px; width: 400px; border: solid 1px; padding: 20px; box-shadow: 1px 1px 3px brown; border-radius: 5px;">
-    <form method="post">
+        <form method="post" action="pessoa.php?acao=cadastrar">
             Nome:<input class="form-control" type="text" name="nome" id="nome" placeholder="Escreva seu nome"/><br/>
-            Cpf:<input class="form-control" type="number" name="cpf" id="cpf" placeholder="Digite seu cpf" /><br/>
+            Cpf:<input class="form-control" type="text" maxlength="14" name="cpf" id="cpf" placeholder="Digite seu cpf" /><br/>
             Data de Nacimento:<input class="form-control" type="date" name="nasc" id="nasc" /><br>
             Endereço:<input class="form-control" type="text" name="endereco" id="endereco" placeholder="Insira o seu endereço" /><br>
-            <input type="hidden" name="acao" id="acao" value="cadastrar" />
             <br>
-            <button type="submit" class="btn btn-success">Cadastrar</button>   
-    </form>
-    <form method="post">
-        <input type="hidden" name="acao" id="acao" value="listar" />
-        <br>
-        <button type="submit" class="btn btn-success">Listar</button>
+            <button type="submit" class="btn btn-success" >Cadastrar</button>
+            <a class="btn btn-primary" href="pessoa.php?acao=listar">Listar</a>
     </form>
     </div>
-    <?php } else if($_POST['acao'] = 'cadastrar' || $_POST['acao'] = 'listar'){ ?>
+    <?php } else if($_GET['acao'] = 'cadastrar' || $_GET['acao'] = 'listar'){ ?>
     <div style="width: 60%; margin: 100px auto;">
         <table class="table">
             <thead>
