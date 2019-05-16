@@ -1,9 +1,10 @@
 <?php
 class Pessoa{
-   private $nome;
-   private $cpf;
-   private $nasc;
-   private $endereco;
+    private $id;
+    private $nome;
+    private $cpf;
+    private $nasc;
+    private $endereco;
    
    function Pessoa(){
        $this->preparaUsuario();
@@ -15,6 +16,15 @@ class Pessoa{
         $this->cpf = "";
         $this->endereco = "";
     }
+    
+    public function getId(){
+       return $this->id;
+    }
+   
+    public function setId($id){
+       $this->id = $id;
+    }
+    
     public function getNome(){
        return $this->nome;
     }

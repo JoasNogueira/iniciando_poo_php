@@ -22,10 +22,14 @@ session_start();
         
         if (isset($_SESSION['pessoas'])){
             $pessoas = $_SESSION['pessoas'];
+            $quantidade = count($pessoas);
+            $ultimoId = $pessoas[$quantidade - 1]->getId();
+            $pessoa->setId($ultimoId + 1);
             $pessoas[] = $pessoa;
             $_SESSION['pessoas'] = $pessoas;
         }else {
             $pessoas = array();
+            $pessoa->setId(1);
             $pessoas[] = $pessoa;
             $_SESSION['pessoas'] = $pessoas;
         }
@@ -60,6 +64,7 @@ if (isset($_GET['acao'])&&$_GET['acao'] == 'cadastrar'){
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Cpf</th>
                     <th scope="col">Data de Nascimento</th>
@@ -71,6 +76,7 @@ if (isset($_GET['acao'])&&$_GET['acao'] == 'cadastrar'){
         $pessoas = $_SESSION['pessoas'];
         foreach ($pessoas as $p){
             echo '<tr>';
+            echo '<td>'.$p->getId().'</td>';
             echo '<td>'.$p->getNome().'</td>';
             echo '<td>'.$p->getCpf().'</td>';
             echo '<td>'.$p->getNasc().'</td>';
